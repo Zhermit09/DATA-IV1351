@@ -90,15 +90,13 @@ BEGIN
                  WHEN (lesson.max_students - count(*)) > 2 THEN 'Many Seats'
                  WHEN 0 < (lesson.max_students - count(*)) AND (lesson.max_students - count(*)) < 3 THEN '1 or 2 Seats'
                  WHEN (lesson.max_students - count(*)) < 1 THEN 'No Seats'
-                END)
-                                          AS "No of Free Seats"
-        FROM
-            time_slot
-                INNER JOIN lesson ON time_slot.lesson_id = lesson.lesson_id
-                INNER JOIN enrollment ON enrollment.lesson_id = lesson.lesson_id
+                END)AS "No of Free Seats"
+        FROM student_history
+                 INNER JOIN time_slot on student_history.time_slot_id = time_slot.time_slot_id
+                 INNER JOIN lesson ON time_slot.lesson_id = lesson.lesson_id
         WHERE _start_date <= time_slot.date AND time_slot.date < _start_date + INTERVAL '1 week'
           AND lesson.lesson_type = 'Ensemble'
         GROUP BY time_slot.date, lesson.music_genre, lesson.max_students
         ORDER BY time_slot.date::DATE, lesson.music_genre;
-END ;
+END;
 $$;
