@@ -32,6 +32,7 @@ BEGIN
 END ;
 $$;
 
+
 CREATE OR REPLACE VIEW sibling_report AS
     SELECT "No of Siblings", count(*) AS "No of Students"
     FROM
@@ -43,8 +44,7 @@ CREATE OR REPLACE VIEW sibling_report AS
     ORDER BY counted."No of Siblings";
 
 
-
-CREATE OR REPLACE FUNCTION instructor_report(_num INT)
+CREATE OR REPLACE FUNCTION instructor_report(_num INT, _start_date DATE)
     RETURNS TABLE
             (
                 "Instructor ID"     BIGINT,
@@ -63,11 +63,13 @@ BEGIN
                person.last_name AS "Last Name",
                count(*) AS "Lesson Count"
         from person inner join time_slot on person.person_id = time_slot.instructor_id
+        WHERE _start_date <= time_slot.date AND time_slot.date < _start_date + INTERVAL '1 month'
         group by person.person_id, person.first_name, person.last_name
         HAVING count(*) > _num
         order by count(*) DESC, person.person_id;
 END ;
 $$;
+
 
 CREATE OR REPLACE FUNCTION next_week_ensemble(_start_date DATE)
     RETURNS TABLE
