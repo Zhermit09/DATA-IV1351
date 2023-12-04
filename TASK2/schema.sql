@@ -1,6 +1,5 @@
 CREATE TYPE SKILL AS ENUM ('Beginner','Intermediate','Advanced');
 CREATE TYPE LESSTYPE AS ENUM ('Individual','Group','Ensemble');
-CREATE TYPE ROLES AS ENUM ('Contact Person','Student','Instructor');
 CREATE TYPE INSTYPE AS ENUM ('Guitar','Bass','Drums');
 CREATE TYPE MGENRE AS ENUM ('Gospel', 'Punk', 'Rock');
 CREATE TYPE SETTINGS AS ENUM ('SETTINGS');

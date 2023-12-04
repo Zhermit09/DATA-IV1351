@@ -3470,7 +3470,7 @@ VALUES (default, 1, '2023-01-01', NULL, 1400, 140, 0.25),
 
 INSERT INTO lesson (lesson_id, instructor_id, lesson_type, skill_level, min_students, max_students, instrument_type,
                     music_genre, payment_description_id)
-VALUES (default, 1, 'Ensemble', 'Beginner', 1, 22, NULL, 'Gospel', 1),
+VALUES (default, 1, 'Ensemble', 'Beginner', 1, 11, NULL, 'Gospel', 1),
        (default, 2, 'Ensemble', 'Beginner', 1, 42, NULL, 'Punk', 1),
        (default, 3, 'Ensemble', 'Beginner', 1, 36, NULL, 'Rock', 1),
        (default, 4, 'Ensemble', 'Intermediate', 1, 43, NULL, 'Gospel', 2),
