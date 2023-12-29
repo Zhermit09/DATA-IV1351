@@ -100,3 +100,4 @@ BEGIN
         ORDER BY time_slot.date::DATE, lesson.music_genre;
 END;
 $$;
+
