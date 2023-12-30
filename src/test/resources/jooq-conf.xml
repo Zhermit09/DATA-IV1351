@@ -18,7 +18,10 @@
         _time_slots|
         sibling_report|
         make_siblings|
-        update_student_history
+        update_student_history|
+        instructor_report|
+        monthly_report|
+        next_week_ensemble
       </excludes>
     </database>
     <generate>

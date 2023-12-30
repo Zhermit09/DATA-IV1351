@@ -3,14 +3,16 @@ package se.soundgood.storage;
 import org.jooq.*;
 import org.jooq.impl.DSL;
 import org.jooq.types.YearToSecond;
-import se.soundgood.storage.jooq.enums.Instype;
+import se.soundgood.jooq.enums.Instype;
+import se.soundgood.jooq.tables.records.AvailableInstrumentRecord;
+import se.soundgood.jooq.tables.records.LeaseRecord;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
 import static org.jooq.impl.DSL.*;
-import static se.soundgood.storage.jooq.Tables.*;
+import static se.soundgood.jooq.Tables.*;
 
 
 public class SoundgoodDAO {
@@ -57,14 +59,7 @@ AND NOT EXISTS
  and lease.instrument_id = instrument.instrument_id)
  order by instrument_id;
 
-    */
-
-    public record AvailableInstrument(Long instrumentId, Instype type, String brand, String description,
-                                      Integer price) {
-    }
-
-    public List<AvailableInstrument> listAvailableInstruments(Configuration tx) {
-        return  tx.dsl().select(INSTRUMENT.INSTRUMENT_ID, INSTRUMENT_SPECIFICATION.TYPE, INSTRUMENT_SPECIFICATION.BRAND, INSTRUMENT.DESCRIPTION, RENT_PRICE.PRICE)
+tx.dsl().select(INSTRUMENT.INSTRUMENT_ID, INSTRUMENT_SPECIFICATION.TYPE, INSTRUMENT_SPECIFICATION.BRAND, INSTRUMENT.DESCRIPTION, RENT_PRICE.PRICE)
                 .from(INSTRUMENT)
                 .innerJoin(RENT_PRICE).on(INSTRUMENT.INSTRUMENT_ID.eq(RENT_PRICE.INSTRUMENT_ID))
                 .innerJoin(INSTRUMENT_SPECIFICATION).on(INSTRUMENT.INSTRUMENT_SPECIFICATION_ID.eq(INSTRUMENT_SPECIFICATION.INSTRUMENT_SPECIFICATION_ID))
@@ -75,42 +70,81 @@ AND NOT EXISTS
                                         .and(currentLocalDate().le(LEASE.RETURN_DATE))
                                         .and(INSTRUMENT.INSTRUMENT_ID.eq(LEASE.INSTRUMENT_ID))))))
                 .orderBy(INSTRUMENT.INSTRUMENT_ID)
-                .fetchInto(AvailableInstrument.class);
+                .fetch();
+    */
+
+
+    public List<AvailableInstrumentRecord> listAvailableInstruments(Configuration tx, Instype type) {
+        if (type == null) {
+            return tx.dsl().selectFrom(AVAILABLE_INSTRUMENT).fetch();
+        }
+        return tx.dsl().selectFrom(AVAILABLE_INSTRUMENT).where(AVAILABLE_INSTRUMENT.TYPE.eq(type)).fetch();
     }
 
-    public void lockInstrument(Configuration tx, Long iId){
+
+    public void lockInstrument(Configuration tx, Long iId) {
         tx.dsl().selectFrom(INSTRUMENT).where(INSTRUMENT.INSTRUMENT_ID.eq(iId)).forUpdate().fetch();
     }
 
-    public Integer getInstrumentActiveLeases(Configuration tx, Long iId){
-        return  tx.dsl().fetchCount(tx.dsl().selectFrom(LEASE).where(LEASE.INSTRUMENT_ID.eq(iId).and(LEASE.RENT_DATE.le(currentLocalDate())
-                .and(currentLocalDate().le(LEASE.RETURN_DATE)))));
+    public Integer getInstrumentActiveLeases(Configuration tx, Long iId) {
+        return tx.dsl().fetchCount(tx.dsl().selectFrom(LEASE)
+                .where(LEASE.INSTRUMENT_ID.eq(iId)
+                        .and(LEASE.RENT_DATE.le(currentLocalDate())
+                                .and(currentLocalDate().le(LEASE.RETURN_DATE)))));
     }
 
-    public Integer getStudentActiveLeases(Configuration tx, Long sId){
-        return  tx.dsl().fetchCount(tx.dsl().selectFrom(LEASE).where(LEASE.STUDENT_ID.eq(sId).and(LEASE.RENT_DATE.le(currentLocalDate())
-                .and(currentLocalDate().le(LEASE.RETURN_DATE)))));
+    public Integer getStudentActiveLeases(Configuration tx, Long sId) {
+        return tx.dsl().fetchCount(tx.dsl().selectFrom(LEASE)
+                .where(LEASE.STUDENT_ID.eq(sId)
+                        .and(LEASE.RENT_DATE.le(currentLocalDate())
+                                .and(currentLocalDate().le(LEASE.RETURN_DATE)))));
     }
 
-    public Integer getMaxLeaseCount(Configuration tx){
-        return  tx.dsl().select(DB_SETTINGS.MAX_LEASE_COUNT).from(DB_SETTINGS).fetchSingle(DB_SETTINGS.MAX_LEASE_COUNT);
+    public Integer getMaxLeaseCount(Configuration tx) {
+        return tx.dsl().select(DB_SETTINGS.MAX_LEASE_COUNT).from(DB_SETTINGS).fetchSingle(DB_SETTINGS.MAX_LEASE_COUNT);
     }
 
-    public YearToSecond getMaxRentPeriod(Configuration tx){
-        return  tx.dsl().select(DB_SETTINGS.MAX_RENT_PERIOD).from(DB_SETTINGS).fetchSingle(DB_SETTINGS.MAX_RENT_PERIOD);
+    public YearToSecond getMaxRentPeriod(Configuration tx) {
+        return tx.dsl().select(DB_SETTINGS.MAX_RENT_PERIOD).from(DB_SETTINGS).fetchSingle(DB_SETTINGS.MAX_RENT_PERIOD);
     }
 
-    public Long getInstrumentRentPriceId(Configuration tx, Long iId){
+    public Long getInstrumentRentPriceId(Configuration tx, Long iId) {
         return tx.dsl().select(RENT_PRICE.RENT_PRICE_ID).from(RENT_PRICE)
                 .where(RENT_PRICE.INSTRUMENT_ID.eq(iId)
                         .and(RENT_PRICE.FROM_DATE.le(currentLocalDate()))
                         .and(currentLocalDate().le(coalesce(RENT_PRICE.TO_DATE, currentLocalDate()))))
                 .fetchSingle(RENT_PRICE.RENT_PRICE_ID);
     }
-    public void createLease(Configuration tx, Long sId, Long iId, YearToSecond period, Long pId) {
 
+    public void createLease(Configuration tx, Long sId, Long iId, YearToSecond period, Long pId) {
         tx.dsl().insertInto(LEASE)
                 .values(defaultValue(LEASE.LEASE_ID), currentLocalDate(), dateAdd(currentDate(), period), iId, sId, pId)
                 .execute();
+    }
+
+
+
+    public List<LeaseRecord> listActiveLeases(Configuration tx, Long sId) {
+        if (sId == null) {
+            return tx.dsl().selectFrom(LEASE)
+                    .where(currentLocalDate().lt(LEASE.RETURN_DATE))
+                    .fetch();
+        }
+        return tx.dsl().selectFrom(LEASE)
+                .where(currentLocalDate().lt(LEASE.RETURN_DATE)
+                        .and(LEASE.STUDENT_ID.eq(sId)))
+                .fetch();
+    }
+
+    public Integer lockLease(Configuration tx, Long lId) {
+        //tx.dsl().fetchValue(tx.dsl().select(localDateDiff(LEASE.RETURN_DATE,currentLocalDate())).from(LEASE).where(LEASE.LEASE_ID.eq(Id)).forNoKeyUpdate());
+        return tx.dsl().selectOne().from(LEASE)
+                .where(LEASE.LEASE_ID.eq(lId)
+                        .and(currentLocalDate().lt(LEASE.RETURN_DATE)))
+                .forNoKeyUpdate().fetchOneInto(Integer.class);
+    }
+
+    public void terminateLease(Configuration tx, Long lId) {
+        tx.dsl().update(LEASE).set(LEASE.RETURN_DATE, currentLocalDate()).where(LEASE.LEASE_ID.eq(lId)).execute();
     }
 }
