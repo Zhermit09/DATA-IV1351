@@ -209,19 +209,19 @@ CREATE TABLE student_history
 );
 ------------------------------------------------------------------------------------------------------------------------
 CREATE OR REPLACE VIEW available_instrument AS
-select instrument.instrument_id,
+SELECT instrument.instrument_id,
        instrument_specification.type,
        instrument_specification.brand,
        instrument.description,
        rent_price.price
-from instrument
-         inner join rent_price ON instrument.instrument_id = rent_price.instrument_id
-         inner join instrument_specification ON instrument.instrument_specification_id = instrument_specification.instrument_specification_id
-where (rent_price.from_date <= CURRENT_DATE AND CURRENT_DATE <= COALESCE(rent_price.to_date, CURRENT_DATE))
+FROM instrument
+         INNER JOIN rent_price ON instrument.instrument_id = rent_price.instrument_id
+         INNER JOIN instrument_specification ON instrument.instrument_specification_id = instrument_specification.instrument_specification_id
+WHERE (rent_price.from_date <= CURRENT_DATE AND CURRENT_DATE <= COALESCE(rent_price.to_date, CURRENT_DATE))
   AND NOT EXISTS
-    (select 1
-     from lease
-     where lease.rent_date <= CURRENT_DATE
+    (SELECT 1
+     FROM lease
+     WHERE lease.rent_date <= CURRENT_DATE
        AND CURRENT_DATE <= lease.return_date
-       and lease.instrument_id = instrument.instrument_id)
-order by instrument_id;
+       AND lease.instrument_id = instrument.instrument_id)
+ORDER BY instrument_id;

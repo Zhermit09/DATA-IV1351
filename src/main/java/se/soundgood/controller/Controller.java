@@ -22,16 +22,16 @@ public class Controller {
     }
 
 
-    public void rentInstrument(Long sId, Long iId) throws SQLTransactionRollbackException {
+    public void rentInstrument(Long sId, Long iId) throws DataAccessException {
         dao.transaction((tx) -> {
             dao.lockInstrument(tx, iId);
-            if (dao.getInstrumentActiveLeases(tx, iId) != 0) {
-                throw new SQLTransactionRollbackException("Chosen instrument is no longer available");
+            if (dao.countInstrumentActiveLeases(tx, iId) != 0) {
+                throw new SQLTransactionRollbackException("Chosen Instrument Is No Longer Available");
             }
 
             Integer max = dao.getMaxLeaseCount(tx);
             if (dao.getStudentActiveLeases(tx, sId) >= max) {
-                throw new SQLTransactionRollbackException("The student has already reached the maximum number of leases ({max})");
+                throw new SQLTransactionRollbackException(String.format("The Student Has Already Reached The Maximum Number Of Leases (%d)", max));
             }
 
             dao.createLease(tx, sId, iId, dao.getMaxRentPeriod(tx), dao.getInstrumentRentPriceId(tx, iId));
@@ -39,19 +39,16 @@ public class Controller {
     }
 
     public List<LeaseRecord> listLeases(Long sId) throws DataAccessException {
-        var res = dao.transactionResult((tx) -> dao.listActiveLeases(tx, sId));
-
+        return dao.transactionResult((tx) -> dao.listActiveLeases(tx, sId));
     }
 
-    public void terminateRental(Long lId) throws SQLTransactionRollbackException {
+    public void terminateRental(Long lId) throws DataAccessException {
         dao.transaction((tx) -> {
 
             if (dao.lockLease(tx, lId) == null) {
-                throw new SQLTransactionRollbackException("The lease period has already ended");
+                throw new SQLTransactionRollbackException("The Lease Period Has Already Ended");
             }
-
             dao.terminateLease(tx, lId);
         });
     }
-
 }
