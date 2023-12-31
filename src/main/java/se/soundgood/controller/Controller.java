@@ -46,7 +46,7 @@ public class Controller {
         dao.transaction((tx) -> {
 
             if (dao.lockLease(tx, lId) == null) {
-                throw new SQLTransactionRollbackException("The Lease Period Has Already Ended");
+                throw new SQLTransactionRollbackException("The Lease Period Has Already Ended Or Could Not Find Lease (id = " + lId + ")");
             }
             dao.terminateLease(tx, lId);
         });

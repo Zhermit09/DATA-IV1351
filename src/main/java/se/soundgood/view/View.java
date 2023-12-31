@@ -66,9 +66,12 @@ public class View {
                 }
             } catch (DataAccessException e) {
                 if (e.sqlState().equals("08006") || e.sqlState().equals("08003")) {
-                    System.out.println("[ERROR] SQL State (" + e.sqlState() + ") Because " + e.getCause().getMessage());
+                    System.out.println("[ERROR] SQL State (" + e.sqlState() + ")" );
                 } else {
-                    System.out.println("[" + e.getMessage() + "] Because " + e.getCause().getMessage());
+                    System.out.println("[Failed] " + e.getMessage());
+                }
+                if(e.getCause() != null){
+                    System.out.println( "Because " + e.getCause().getMessage());
                 }
             }
             System.out.println();
