@@ -17,9 +17,12 @@ public class Service {
         dao = new SoundgoodDAO();
     }
 
+
+
     public List<AvailableInstrumentRecord> listInstruments(Instype type) throws DataAccessException {
         return dao.transactionResult(tx -> dao.listAvailableInstruments(tx, type) /*implicit commit here*/);
     }
+
 
 
     public void rentInstrument(Long sId, Long iId) throws DataAccessException {
@@ -38,6 +41,8 @@ public class Service {
             //implicit commit here
         });
     }
+
+
 
     public List<LeaseRecord> listLeases(Long sId) throws DataAccessException {
         return dao.transactionResult((tx) -> dao.listActiveLeases(tx, sId) /*implicit commit here*/);
