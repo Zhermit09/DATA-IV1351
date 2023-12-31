@@ -10,8 +10,8 @@ import org.jooq.impl.UpdatableRecordImpl;
 import se.soundgood.jooq.enums.Instype;
 import se.soundgood.jooq.enums.Lesstype;
 import se.soundgood.jooq.enums.Mgenre;
-import se.soundgood.jooq.tables.pojos.Lesson;
 import se.soundgood.jooq.enums.Skill;
+import se.soundgood.jooq.tables.Lesson;
 
 
 /**
@@ -174,14 +174,14 @@ public class LessonRecord extends UpdatableRecordImpl<LessonRecord> {
      * Create a detached LessonRecord
      */
     public LessonRecord() {
-        super(se.soundgood.jooq.tables.Lesson.LESSON);
+        super(Lesson.LESSON);
     }
 
     /**
      * Create a detached, initialised LessonRecord
      */
     public LessonRecord(Long lessonId, Long instructorId, Lesstype lessonType, Skill skillLevel, Integer minStudents, Integer maxStudents, Instype instrumentType, Mgenre musicGenre, Long paymentDescriptionId) {
-        super(se.soundgood.jooq.tables.Lesson.LESSON);
+        super(Lesson.LESSON);
 
         setLessonId(lessonId);
         setInstructorId(instructorId);
@@ -198,8 +198,8 @@ public class LessonRecord extends UpdatableRecordImpl<LessonRecord> {
     /**
      * Create a detached, initialised LessonRecord
      */
-    public LessonRecord(Lesson value) {
-        super(se.soundgood.jooq.tables.Lesson.LESSON);
+    public LessonRecord(se.soundgood.jooq.tables.pojos.Lesson value) {
+        super(Lesson.LESSON);
 
         if (value != null) {
             setLessonId(value.lessonId());

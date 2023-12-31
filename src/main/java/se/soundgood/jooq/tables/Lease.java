@@ -33,8 +33,10 @@ import org.jooq.impl.TableImpl;
 
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
-import se.soundgood.jooq.tables.records.LeaseRecord;
 import se.soundgood.jooq.tables.Instrument.InstrumentPath;
+import se.soundgood.jooq.tables.RentPrice.RentPricePath;
+import se.soundgood.jooq.tables.Student.StudentPath;
+import se.soundgood.jooq.tables.records.LeaseRecord;
 
 
 /**
@@ -180,26 +182,26 @@ public class Lease extends TableImpl<LeaseRecord> {
         return _instrument;
     }
 
-    private transient Student.StudentPath _student;
+    private transient StudentPath _student;
 
     /**
      * Get the implicit join path to the <code>public.student</code> table.
      */
-    public Student.StudentPath student() {
+    public StudentPath student() {
         if (_student == null)
-            _student = new Student.StudentPath(this, Keys.LEASE__LEASE_STUDENT_ID_FKEY, null);
+            _student = new StudentPath(this, Keys.LEASE__LEASE_STUDENT_ID_FKEY, null);
 
         return _student;
     }
 
-    private transient RentPrice.RentPricePath _rentPrice;
+    private transient RentPricePath _rentPrice;
 
     /**
      * Get the implicit join path to the <code>public.rent_price</code> table.
      */
-    public RentPrice.RentPricePath rentPrice() {
+    public RentPricePath rentPrice() {
         if (_rentPrice == null)
-            _rentPrice = new RentPrice.RentPricePath(this, Keys.LEASE__LEASE_RENT_PRICE_ID_FKEY, null);
+            _rentPrice = new RentPricePath(this, Keys.LEASE__LEASE_RENT_PRICE_ID_FKEY, null);
 
         return _rentPrice;
     }

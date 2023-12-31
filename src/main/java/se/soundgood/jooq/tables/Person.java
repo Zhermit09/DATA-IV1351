@@ -32,11 +32,14 @@ import org.jooq.impl.TableImpl;
 
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
-import se.soundgood.jooq.tables.records.PersonRecord;
 import se.soundgood.jooq.tables.Address.AddressPath;
 import se.soundgood.jooq.tables.ContactPersonStudent.ContactPersonStudentPath;
 import se.soundgood.jooq.tables.Email.EmailPath;
 import se.soundgood.jooq.tables.Instructor.InstructorPath;
+import se.soundgood.jooq.tables.PersonAddress.PersonAddressPath;
+import se.soundgood.jooq.tables.Phone.PhonePath;
+import se.soundgood.jooq.tables.Student.StudentPath;
+import se.soundgood.jooq.tables.records.PersonRecord;
 
 
 /**
@@ -198,40 +201,40 @@ public class Person extends TableImpl<PersonRecord> {
         return _instructor;
     }
 
-    private transient PersonAddress.PersonAddressPath _personAddress;
+    private transient PersonAddressPath _personAddress;
 
     /**
      * Get the implicit to-many join path to the
      * <code>public.person_address</code> table
      */
-    public PersonAddress.PersonAddressPath personAddress() {
+    public PersonAddressPath personAddress() {
         if (_personAddress == null)
-            _personAddress = new PersonAddress.PersonAddressPath(this, null, Keys.PERSON_ADDRESS__PERSON_ADDRESS_PERSON_ID_FKEY.getInverseKey());
+            _personAddress = new PersonAddressPath(this, null, Keys.PERSON_ADDRESS__PERSON_ADDRESS_PERSON_ID_FKEY.getInverseKey());
 
         return _personAddress;
     }
 
-    private transient Phone.PhonePath _phone;
+    private transient PhonePath _phone;
 
     /**
      * Get the implicit to-many join path to the <code>public.phone</code> table
      */
-    public Phone.PhonePath phone() {
+    public PhonePath phone() {
         if (_phone == null)
-            _phone = new Phone.PhonePath(this, null, Keys.PHONE__PHONE_PERSON_ID_FKEY.getInverseKey());
+            _phone = new PhonePath(this, null, Keys.PHONE__PHONE_PERSON_ID_FKEY.getInverseKey());
 
         return _phone;
     }
 
-    private transient Student.StudentPath _student;
+    private transient StudentPath _student;
 
     /**
      * Get the implicit to-many join path to the <code>public.student</code>
      * table
      */
-    public Student.StudentPath student() {
+    public StudentPath student() {
         if (_student == null)
-            _student = new Student.StudentPath(this, null, Keys.STUDENT__STUDENT_STUDENT_ID_FKEY.getInverseKey());
+            _student = new StudentPath(this, null, Keys.STUDENT__STUDENT_STUDENT_ID_FKEY.getInverseKey());
 
         return _student;
     }

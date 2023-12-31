@@ -31,6 +31,7 @@ import org.jooq.impl.TableImpl;
 
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
+import se.soundgood.jooq.tables.Person.PersonPath;
 import se.soundgood.jooq.tables.records.EmailRecord;
 
 
@@ -140,14 +141,14 @@ public class Email extends TableImpl<EmailRecord> {
         return Arrays.asList(Keys.EMAIL__EMAIL_PERSON_ID_FKEY);
     }
 
-    private transient Person.PersonPath _person;
+    private transient PersonPath _person;
 
     /**
      * Get the implicit join path to the <code>public.person</code> table.
      */
-    public Person.PersonPath person() {
+    public PersonPath person() {
         if (_person == null)
-            _person = new Person.PersonPath(this, Keys.EMAIL__EMAIL_PERSON_ID_FKEY, null);
+            _person = new PersonPath(this, Keys.EMAIL__EMAIL_PERSON_ID_FKEY, null);
 
         return _person;
     }

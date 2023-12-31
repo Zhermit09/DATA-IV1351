@@ -8,7 +8,7 @@ import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
 
 import se.soundgood.jooq.enums.Instype;
-import se.soundgood.jooq.tables.pojos.InstrumentSpecification;
+import se.soundgood.jooq.tables.InstrumentSpecification;
 
 
 /**
@@ -83,14 +83,14 @@ public class InstrumentSpecificationRecord extends UpdatableRecordImpl<Instrumen
      * Create a detached InstrumentSpecificationRecord
      */
     public InstrumentSpecificationRecord() {
-        super(se.soundgood.jooq.tables.InstrumentSpecification.INSTRUMENT_SPECIFICATION);
+        super(InstrumentSpecification.INSTRUMENT_SPECIFICATION);
     }
 
     /**
      * Create a detached, initialised InstrumentSpecificationRecord
      */
     public InstrumentSpecificationRecord(Long instrumentSpecificationId, Instype type, String brand) {
-        super(se.soundgood.jooq.tables.InstrumentSpecification.INSTRUMENT_SPECIFICATION);
+        super(InstrumentSpecification.INSTRUMENT_SPECIFICATION);
 
         setInstrumentSpecificationId(instrumentSpecificationId);
         setType(type);
@@ -101,8 +101,8 @@ public class InstrumentSpecificationRecord extends UpdatableRecordImpl<Instrumen
     /**
      * Create a detached, initialised InstrumentSpecificationRecord
      */
-    public InstrumentSpecificationRecord(InstrumentSpecification value) {
-        super(se.soundgood.jooq.tables.InstrumentSpecification.INSTRUMENT_SPECIFICATION);
+    public InstrumentSpecificationRecord(se.soundgood.jooq.tables.pojos.InstrumentSpecification value) {
+        super(InstrumentSpecification.INSTRUMENT_SPECIFICATION);
 
         if (value != null) {
             setInstrumentSpecificationId(value.instrumentSpecificationId());

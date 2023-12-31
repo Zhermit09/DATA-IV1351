@@ -8,7 +8,7 @@ import org.jooq.Record2;
 import org.jooq.impl.UpdatableRecordImpl;
 
 import se.soundgood.jooq.enums.Instype;
-import se.soundgood.jooq.tables.pojos.InstructorInstype;
+import se.soundgood.jooq.tables.InstructorInstype;
 
 
 /**
@@ -66,14 +66,14 @@ public class InstructorInstypeRecord extends UpdatableRecordImpl<InstructorInsty
      * Create a detached InstructorInstypeRecord
      */
     public InstructorInstypeRecord() {
-        super(se.soundgood.jooq.tables.InstructorInstype.INSTRUCTOR_INSTYPE);
+        super(InstructorInstype.INSTRUCTOR_INSTYPE);
     }
 
     /**
      * Create a detached, initialised InstructorInstypeRecord
      */
     public InstructorInstypeRecord(Long instructorId, Instype instrumentType) {
-        super(se.soundgood.jooq.tables.InstructorInstype.INSTRUCTOR_INSTYPE);
+        super(InstructorInstype.INSTRUCTOR_INSTYPE);
 
         setInstructorId(instructorId);
         setInstrumentType(instrumentType);
@@ -83,8 +83,8 @@ public class InstructorInstypeRecord extends UpdatableRecordImpl<InstructorInsty
     /**
      * Create a detached, initialised InstructorInstypeRecord
      */
-    public InstructorInstypeRecord(InstructorInstype value) {
-        super(se.soundgood.jooq.tables.InstructorInstype.INSTRUCTOR_INSTYPE);
+    public InstructorInstypeRecord(se.soundgood.jooq.tables.pojos.InstructorInstype value) {
+        super(InstructorInstype.INSTRUCTOR_INSTYPE);
 
         if (value != null) {
             setInstructorId(value.instructorId());

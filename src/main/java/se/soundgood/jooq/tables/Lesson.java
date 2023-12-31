@@ -35,10 +35,13 @@ import se.soundgood.jooq.Keys;
 import se.soundgood.jooq.enums.Instype;
 import se.soundgood.jooq.enums.Lesstype;
 import se.soundgood.jooq.enums.Mgenre;
-import se.soundgood.jooq.tables.records.LessonRecord;
 import se.soundgood.jooq.enums.Skill;
 import se.soundgood.jooq.tables.Enrollment.EnrollmentPath;
 import se.soundgood.jooq.tables.Instructor.InstructorPath;
+import se.soundgood.jooq.tables.PaymentDescription.PaymentDescriptionPath;
+import se.soundgood.jooq.tables.Student.StudentPath;
+import se.soundgood.jooq.tables.TimeSlot.TimeSlotPath;
+import se.soundgood.jooq.tables.records.LessonRecord;
 
 
 /**
@@ -199,15 +202,15 @@ public class Lesson extends TableImpl<LessonRecord> {
         return _instructor;
     }
 
-    private transient PaymentDescription.PaymentDescriptionPath _paymentDescription;
+    private transient PaymentDescriptionPath _paymentDescription;
 
     /**
      * Get the implicit join path to the <code>public.payment_description</code>
      * table.
      */
-    public PaymentDescription.PaymentDescriptionPath paymentDescription() {
+    public PaymentDescriptionPath paymentDescription() {
         if (_paymentDescription == null)
-            _paymentDescription = new PaymentDescription.PaymentDescriptionPath(this, Keys.LESSON__LESSON_PAYMENT_DESCRIPTION_ID_FKEY, null);
+            _paymentDescription = new PaymentDescriptionPath(this, Keys.LESSON__LESSON_PAYMENT_DESCRIPTION_ID_FKEY, null);
 
         return _paymentDescription;
     }
@@ -225,15 +228,15 @@ public class Lesson extends TableImpl<LessonRecord> {
         return _enrollment;
     }
 
-    private transient TimeSlot.TimeSlotPath _timeSlot;
+    private transient TimeSlotPath _timeSlot;
 
     /**
      * Get the implicit to-many join path to the <code>public.time_slot</code>
      * table
      */
-    public TimeSlot.TimeSlotPath timeSlot() {
+    public TimeSlotPath timeSlot() {
         if (_timeSlot == null)
-            _timeSlot = new TimeSlot.TimeSlotPath(this, null, Keys.TIME_SLOT__TIME_SLOT_LESSON_ID_FKEY.getInverseKey());
+            _timeSlot = new TimeSlotPath(this, null, Keys.TIME_SLOT__TIME_SLOT_LESSON_ID_FKEY.getInverseKey());
 
         return _timeSlot;
     }
@@ -242,7 +245,7 @@ public class Lesson extends TableImpl<LessonRecord> {
      * Get the implicit many-to-many join path to the
      * <code>public.student</code> table
      */
-    public Student.StudentPath student() {
+    public StudentPath student() {
         return enrollment().student();
     }
 

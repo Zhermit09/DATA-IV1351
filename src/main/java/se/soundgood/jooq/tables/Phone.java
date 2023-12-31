@@ -31,8 +31,8 @@ import org.jooq.impl.TableImpl;
 
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
-import se.soundgood.jooq.tables.records.PhoneRecord;
 import se.soundgood.jooq.tables.Person.PersonPath;
+import se.soundgood.jooq.tables.records.PhoneRecord;
 
 
 /**

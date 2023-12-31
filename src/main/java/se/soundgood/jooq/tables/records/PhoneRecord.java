@@ -7,7 +7,7 @@ package se.soundgood.jooq.tables.records;
 import org.jooq.Record2;
 import org.jooq.impl.UpdatableRecordImpl;
 
-import se.soundgood.jooq.tables.pojos.Phone;
+import se.soundgood.jooq.tables.Phone;
 
 
 /**
@@ -65,14 +65,14 @@ public class PhoneRecord extends UpdatableRecordImpl<PhoneRecord> {
      * Create a detached PhoneRecord
      */
     public PhoneRecord() {
-        super(se.soundgood.jooq.tables.Phone.PHONE);
+        super(Phone.PHONE);
     }
 
     /**
      * Create a detached, initialised PhoneRecord
      */
     public PhoneRecord(Long personId, String phoneNumber) {
-        super(se.soundgood.jooq.tables.Phone.PHONE);
+        super(Phone.PHONE);
 
         setPersonId(personId);
         setPhoneNumber(phoneNumber);
@@ -82,8 +82,8 @@ public class PhoneRecord extends UpdatableRecordImpl<PhoneRecord> {
     /**
      * Create a detached, initialised PhoneRecord
      */
-    public PhoneRecord(Phone value) {
-        super(se.soundgood.jooq.tables.Phone.PHONE);
+    public PhoneRecord(se.soundgood.jooq.tables.pojos.Phone value) {
+        super(Phone.PHONE);
 
         if (value != null) {
             setPersonId(value.personId());

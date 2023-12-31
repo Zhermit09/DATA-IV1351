@@ -30,9 +30,9 @@ import org.jooq.impl.TableImpl;
 
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
-import se.soundgood.jooq.tables.records.PaymentDescriptionRecord;
 import se.soundgood.jooq.tables.Lesson.LessonPath;
 import se.soundgood.jooq.tables.Payment.PaymentPath;
+import se.soundgood.jooq.tables.records.PaymentDescriptionRecord;
 
 
 /**

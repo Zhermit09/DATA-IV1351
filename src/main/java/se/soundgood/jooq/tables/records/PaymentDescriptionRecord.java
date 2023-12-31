@@ -7,7 +7,7 @@ package se.soundgood.jooq.tables.records;
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
 
-import se.soundgood.jooq.tables.pojos.PaymentDescription;
+import se.soundgood.jooq.tables.PaymentDescription;
 
 
 /**
@@ -65,14 +65,14 @@ public class PaymentDescriptionRecord extends UpdatableRecordImpl<PaymentDescrip
      * Create a detached PaymentDescriptionRecord
      */
     public PaymentDescriptionRecord() {
-        super(se.soundgood.jooq.tables.PaymentDescription.PAYMENT_DESCRIPTION);
+        super(PaymentDescription.PAYMENT_DESCRIPTION);
     }
 
     /**
      * Create a detached, initialised PaymentDescriptionRecord
      */
     public PaymentDescriptionRecord(Long paymentDescriptionId, String description) {
-        super(se.soundgood.jooq.tables.PaymentDescription.PAYMENT_DESCRIPTION);
+        super(PaymentDescription.PAYMENT_DESCRIPTION);
 
         setPaymentDescriptionId(paymentDescriptionId);
         setDescription(description);
@@ -82,8 +82,8 @@ public class PaymentDescriptionRecord extends UpdatableRecordImpl<PaymentDescrip
     /**
      * Create a detached, initialised PaymentDescriptionRecord
      */
-    public PaymentDescriptionRecord(PaymentDescription value) {
-        super(se.soundgood.jooq.tables.PaymentDescription.PAYMENT_DESCRIPTION);
+    public PaymentDescriptionRecord(se.soundgood.jooq.tables.pojos.PaymentDescription value) {
+        super(PaymentDescription.PAYMENT_DESCRIPTION);
 
         if (value != null) {
             setPaymentDescriptionId(value.paymentDescriptionId());

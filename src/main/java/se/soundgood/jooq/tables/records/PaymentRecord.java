@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
 
-import se.soundgood.jooq.tables.pojos.Payment;
+import se.soundgood.jooq.tables.Payment;
 
 
 /**
@@ -143,14 +143,14 @@ public class PaymentRecord extends UpdatableRecordImpl<PaymentRecord> {
      * Create a detached PaymentRecord
      */
     public PaymentRecord() {
-        super(se.soundgood.jooq.tables.Payment.PAYMENT);
+        super(Payment.PAYMENT);
     }
 
     /**
      * Create a detached, initialised PaymentRecord
      */
     public PaymentRecord(Long paymentId, Long paymentDescriptionId, LocalDate fromDate, LocalDate toDate, Integer instructorPay, Integer studentPrice, BigDecimal siblingDiscount) {
-        super(se.soundgood.jooq.tables.Payment.PAYMENT);
+        super(Payment.PAYMENT);
 
         setPaymentId(paymentId);
         setPaymentDescriptionId(paymentDescriptionId);
@@ -165,8 +165,8 @@ public class PaymentRecord extends UpdatableRecordImpl<PaymentRecord> {
     /**
      * Create a detached, initialised PaymentRecord
      */
-    public PaymentRecord(Payment value) {
-        super(se.soundgood.jooq.tables.Payment.PAYMENT);
+    public PaymentRecord(se.soundgood.jooq.tables.pojos.Payment value) {
+        super(Payment.PAYMENT);
 
         if (value != null) {
             setPaymentId(value.paymentId());

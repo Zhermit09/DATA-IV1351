@@ -7,7 +7,7 @@ package se.soundgood.jooq.tables.records;
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
 
-import se.soundgood.jooq.tables.pojos.Student;
+import se.soundgood.jooq.tables.Student;
 
 
 /**
@@ -65,14 +65,14 @@ public class StudentRecord extends UpdatableRecordImpl<StudentRecord> {
      * Create a detached StudentRecord
      */
     public StudentRecord() {
-        super(se.soundgood.jooq.tables.Student.STUDENT);
+        super(Student.STUDENT);
     }
 
     /**
      * Create a detached, initialised StudentRecord
      */
     public StudentRecord(Long studentId, Long familyId) {
-        super(se.soundgood.jooq.tables.Student.STUDENT);
+        super(Student.STUDENT);
 
         setStudentId(studentId);
         setFamilyId(familyId);
@@ -82,8 +82,8 @@ public class StudentRecord extends UpdatableRecordImpl<StudentRecord> {
     /**
      * Create a detached, initialised StudentRecord
      */
-    public StudentRecord(Student value) {
-        super(se.soundgood.jooq.tables.Student.STUDENT);
+    public StudentRecord(se.soundgood.jooq.tables.pojos.Student value) {
+        super(Student.STUDENT);
 
         if (value != null) {
             setStudentId(value.studentId());

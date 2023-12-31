@@ -34,6 +34,8 @@ import org.jooq.impl.TableImpl;
 
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
+import se.soundgood.jooq.tables.PaymentDescription.PaymentDescriptionPath;
+import se.soundgood.jooq.tables.TimeSlot.TimeSlotPath;
 import se.soundgood.jooq.tables.records.PaymentRecord;
 
 
@@ -173,28 +175,28 @@ public class Payment extends TableImpl<PaymentRecord> {
         return Arrays.asList(Keys.PAYMENT__PAYMENT_PAYMENT_DESCRIPTION_ID_FKEY);
     }
 
-    private transient PaymentDescription.PaymentDescriptionPath _paymentDescription;
+    private transient PaymentDescriptionPath _paymentDescription;
 
     /**
      * Get the implicit join path to the <code>public.payment_description</code>
      * table.
      */
-    public PaymentDescription.PaymentDescriptionPath paymentDescription() {
+    public PaymentDescriptionPath paymentDescription() {
         if (_paymentDescription == null)
-            _paymentDescription = new PaymentDescription.PaymentDescriptionPath(this, Keys.PAYMENT__PAYMENT_PAYMENT_DESCRIPTION_ID_FKEY, null);
+            _paymentDescription = new PaymentDescriptionPath(this, Keys.PAYMENT__PAYMENT_PAYMENT_DESCRIPTION_ID_FKEY, null);
 
         return _paymentDescription;
     }
 
-    private transient TimeSlot.TimeSlotPath _timeSlot;
+    private transient TimeSlotPath _timeSlot;
 
     /**
      * Get the implicit to-many join path to the <code>public.time_slot</code>
      * table
      */
-    public TimeSlot.TimeSlotPath timeSlot() {
+    public TimeSlotPath timeSlot() {
         if (_timeSlot == null)
-            _timeSlot = new TimeSlot.TimeSlotPath(this, null, Keys.TIME_SLOT__TIME_SLOT_PAYMENT_ID_FKEY.getInverseKey());
+            _timeSlot = new TimeSlotPath(this, null, Keys.TIME_SLOT__TIME_SLOT_PAYMENT_ID_FKEY.getInverseKey());
 
         return _timeSlot;
     }

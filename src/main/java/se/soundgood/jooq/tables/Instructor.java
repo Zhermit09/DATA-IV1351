@@ -31,6 +31,10 @@ import org.jooq.impl.TableImpl;
 
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
+import se.soundgood.jooq.tables.InstructorInstype.InstructorInstypePath;
+import se.soundgood.jooq.tables.Lesson.LessonPath;
+import se.soundgood.jooq.tables.Person.PersonPath;
+import se.soundgood.jooq.tables.TimeSlot.TimeSlotPath;
 import se.soundgood.jooq.tables.records.InstructorRecord;
 
 
@@ -140,53 +144,53 @@ public class Instructor extends TableImpl<InstructorRecord> {
         return Arrays.asList(Keys.INSTRUCTOR__INSTRUCTOR_INSTRUCTOR_ID_FKEY);
     }
 
-    private transient Person.PersonPath _person;
+    private transient PersonPath _person;
 
     /**
      * Get the implicit join path to the <code>public.person</code> table.
      */
-    public Person.PersonPath person() {
+    public PersonPath person() {
         if (_person == null)
-            _person = new Person.PersonPath(this, Keys.INSTRUCTOR__INSTRUCTOR_INSTRUCTOR_ID_FKEY, null);
+            _person = new PersonPath(this, Keys.INSTRUCTOR__INSTRUCTOR_INSTRUCTOR_ID_FKEY, null);
 
         return _person;
     }
 
-    private transient InstructorInstype.InstructorInstypePath _instructorInstype;
+    private transient InstructorInstypePath _instructorInstype;
 
     /**
      * Get the implicit to-many join path to the
      * <code>public.instructor_instype</code> table
      */
-    public InstructorInstype.InstructorInstypePath instructorInstype() {
+    public InstructorInstypePath instructorInstype() {
         if (_instructorInstype == null)
-            _instructorInstype = new InstructorInstype.InstructorInstypePath(this, null, Keys.INSTRUCTOR_INSTYPE__INSTRUCTOR_INSTYPE_INSTRUCTOR_ID_FKEY.getInverseKey());
+            _instructorInstype = new InstructorInstypePath(this, null, Keys.INSTRUCTOR_INSTYPE__INSTRUCTOR_INSTYPE_INSTRUCTOR_ID_FKEY.getInverseKey());
 
         return _instructorInstype;
     }
 
-    private transient Lesson.LessonPath _lesson;
+    private transient LessonPath _lesson;
 
     /**
      * Get the implicit to-many join path to the <code>public.lesson</code>
      * table
      */
-    public Lesson.LessonPath lesson() {
+    public LessonPath lesson() {
         if (_lesson == null)
-            _lesson = new Lesson.LessonPath(this, null, Keys.LESSON__LESSON_INSTRUCTOR_ID_FKEY.getInverseKey());
+            _lesson = new LessonPath(this, null, Keys.LESSON__LESSON_INSTRUCTOR_ID_FKEY.getInverseKey());
 
         return _lesson;
     }
 
-    private transient TimeSlot.TimeSlotPath _timeSlot;
+    private transient TimeSlotPath _timeSlot;
 
     /**
      * Get the implicit to-many join path to the <code>public.time_slot</code>
      * table
      */
-    public TimeSlot.TimeSlotPath timeSlot() {
+    public TimeSlotPath timeSlot() {
         if (_timeSlot == null)
-            _timeSlot = new TimeSlot.TimeSlotPath(this, null, Keys.TIME_SLOT__TIME_SLOT_INSTRUCTOR_ID_FKEY.getInverseKey());
+            _timeSlot = new TimeSlotPath(this, null, Keys.TIME_SLOT__TIME_SLOT_INSTRUCTOR_ID_FKEY.getInverseKey());
 
         return _timeSlot;
     }

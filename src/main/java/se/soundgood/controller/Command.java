@@ -1,4 +1,4 @@
-package se.soundgood.view;
+package se.soundgood.controller;
 
 public enum Command {
     LIST_INST,

@@ -8,8 +8,8 @@ import org.jooq.Record2;
 import org.jooq.impl.UpdatableRecordImpl;
 
 import se.soundgood.jooq.enums.Instype;
-import se.soundgood.jooq.tables.pojos.StudentInstype;
 import se.soundgood.jooq.enums.Skill;
+import se.soundgood.jooq.tables.StudentInstype;
 
 
 /**
@@ -82,14 +82,14 @@ public class StudentInstypeRecord extends UpdatableRecordImpl<StudentInstypeReco
      * Create a detached StudentInstypeRecord
      */
     public StudentInstypeRecord() {
-        super(se.soundgood.jooq.tables.StudentInstype.STUDENT_INSTYPE);
+        super(StudentInstype.STUDENT_INSTYPE);
     }
 
     /**
      * Create a detached, initialised StudentInstypeRecord
      */
     public StudentInstypeRecord(Long studentId, Instype instrumentType, Skill skillLevel) {
-        super(se.soundgood.jooq.tables.StudentInstype.STUDENT_INSTYPE);
+        super(StudentInstype.STUDENT_INSTYPE);
 
         setStudentId(studentId);
         setInstrumentType(instrumentType);
@@ -100,8 +100,8 @@ public class StudentInstypeRecord extends UpdatableRecordImpl<StudentInstypeReco
     /**
      * Create a detached, initialised StudentInstypeRecord
      */
-    public StudentInstypeRecord(StudentInstype value) {
-        super(se.soundgood.jooq.tables.StudentInstype.STUDENT_INSTYPE);
+    public StudentInstypeRecord(se.soundgood.jooq.tables.pojos.StudentInstype value) {
+        super(StudentInstype.STUDENT_INSTYPE);
 
         if (value != null) {
             setStudentId(value.studentId());

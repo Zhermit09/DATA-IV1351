@@ -7,7 +7,7 @@ package se.soundgood.jooq.tables.records;
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
 
-import se.soundgood.jooq.tables.pojos.Instructor;
+import se.soundgood.jooq.tables.Instructor;
 
 
 /**
@@ -65,14 +65,14 @@ public class InstructorRecord extends UpdatableRecordImpl<InstructorRecord> {
      * Create a detached InstructorRecord
      */
     public InstructorRecord() {
-        super(se.soundgood.jooq.tables.Instructor.INSTRUCTOR);
+        super(Instructor.INSTRUCTOR);
     }
 
     /**
      * Create a detached, initialised InstructorRecord
      */
     public InstructorRecord(Long instructorId, Boolean leadsEnsemble) {
-        super(se.soundgood.jooq.tables.Instructor.INSTRUCTOR);
+        super(Instructor.INSTRUCTOR);
 
         setInstructorId(instructorId);
         setLeadsEnsemble(leadsEnsemble);
@@ -82,8 +82,8 @@ public class InstructorRecord extends UpdatableRecordImpl<InstructorRecord> {
     /**
      * Create a detached, initialised InstructorRecord
      */
-    public InstructorRecord(Instructor value) {
-        super(se.soundgood.jooq.tables.Instructor.INSTRUCTOR);
+    public InstructorRecord(se.soundgood.jooq.tables.pojos.Instructor value) {
+        super(Instructor.INSTRUCTOR);
 
         if (value != null) {
             setInstructorId(value.instructorId());

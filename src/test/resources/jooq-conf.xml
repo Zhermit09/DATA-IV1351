@@ -38,7 +38,7 @@
       <serializablePojos>false</serializablePojos>
     </generate>
     <target>
-      <packageName>se.soundgood.storage.jooq</packageName>
+      <packageName>se.soundgood.jooq</packageName>
       <directory>src/main/java</directory>
     </target>
   </generator>

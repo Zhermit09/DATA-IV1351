@@ -32,8 +32,8 @@ import org.jooq.impl.TableImpl;
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
 import se.soundgood.jooq.enums.Instype;
-import se.soundgood.jooq.tables.records.InstructorInstypeRecord;
 import se.soundgood.jooq.tables.Instructor.InstructorPath;
+import se.soundgood.jooq.tables.records.InstructorInstypeRecord;
 
 
 /**

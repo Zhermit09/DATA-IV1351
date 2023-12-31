@@ -26,8 +26,8 @@ import org.jooq.types.YearToSecond;
 
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
-import se.soundgood.jooq.tables.records.DbSettingsRecord;
 import se.soundgood.jooq.enums.Settings;
+import se.soundgood.jooq.tables.records.DbSettingsRecord;
 
 
 /**

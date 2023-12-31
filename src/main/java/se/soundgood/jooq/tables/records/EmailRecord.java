@@ -7,7 +7,7 @@ package se.soundgood.jooq.tables.records;
 import org.jooq.Record2;
 import org.jooq.impl.UpdatableRecordImpl;
 
-import se.soundgood.jooq.tables.pojos.Email;
+import se.soundgood.jooq.tables.Email;
 
 
 /**
@@ -65,14 +65,14 @@ public class EmailRecord extends UpdatableRecordImpl<EmailRecord> {
      * Create a detached EmailRecord
      */
     public EmailRecord() {
-        super(se.soundgood.jooq.tables.Email.EMAIL);
+        super(Email.EMAIL);
     }
 
     /**
      * Create a detached, initialised EmailRecord
      */
     public EmailRecord(Long personId, String email) {
-        super(se.soundgood.jooq.tables.Email.EMAIL);
+        super(Email.EMAIL);
 
         setPersonId(personId);
         setEmail(email);
@@ -82,8 +82,8 @@ public class EmailRecord extends UpdatableRecordImpl<EmailRecord> {
     /**
      * Create a detached, initialised EmailRecord
      */
-    public EmailRecord(Email value) {
-        super(se.soundgood.jooq.tables.Email.EMAIL);
+    public EmailRecord(se.soundgood.jooq.tables.pojos.Email value) {
+        super(Email.EMAIL);
 
         if (value != null) {
             setPersonId(value.personId());

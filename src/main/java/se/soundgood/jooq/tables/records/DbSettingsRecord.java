@@ -8,8 +8,8 @@ import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
 import org.jooq.types.YearToSecond;
 
-import se.soundgood.jooq.tables.pojos.DbSettings;
 import se.soundgood.jooq.enums.Settings;
+import se.soundgood.jooq.tables.DbSettings;
 
 
 /**
@@ -82,14 +82,14 @@ public class DbSettingsRecord extends UpdatableRecordImpl<DbSettingsRecord> {
      * Create a detached DbSettingsRecord
      */
     public DbSettingsRecord() {
-        super(se.soundgood.jooq.tables.DbSettings.DB_SETTINGS);
+        super(DbSettings.DB_SETTINGS);
     }
 
     /**
      * Create a detached, initialised DbSettingsRecord
      */
     public DbSettingsRecord(Settings id, Integer maxLeaseCount, YearToSecond maxRentPeriod) {
-        super(se.soundgood.jooq.tables.DbSettings.DB_SETTINGS);
+        super(DbSettings.DB_SETTINGS);
 
         setId(id);
         setMaxLeaseCount(maxLeaseCount);
@@ -100,8 +100,8 @@ public class DbSettingsRecord extends UpdatableRecordImpl<DbSettingsRecord> {
     /**
      * Create a detached, initialised DbSettingsRecord
      */
-    public DbSettingsRecord(DbSettings value) {
-        super(se.soundgood.jooq.tables.DbSettings.DB_SETTINGS);
+    public DbSettingsRecord(se.soundgood.jooq.tables.pojos.DbSettings value) {
+        super(DbSettings.DB_SETTINGS);
 
         if (value != null) {
             setId(value.id());

@@ -31,7 +31,6 @@ import org.jooq.impl.TableImpl;
 
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
-import se.soundgood.jooq.tables.records.StudentRecord;
 import se.soundgood.jooq.tables.ContactPersonStudent.ContactPersonStudentPath;
 import se.soundgood.jooq.tables.Enrollment.EnrollmentPath;
 import se.soundgood.jooq.tables.Lease.LeasePath;
@@ -39,6 +38,8 @@ import se.soundgood.jooq.tables.Lesson.LessonPath;
 import se.soundgood.jooq.tables.Person.PersonPath;
 import se.soundgood.jooq.tables.StudentHistory.StudentHistoryPath;
 import se.soundgood.jooq.tables.StudentInstype.StudentInstypePath;
+import se.soundgood.jooq.tables.TimeSlot.TimeSlotPath;
+import se.soundgood.jooq.tables.records.StudentRecord;
 
 
 /**
@@ -235,7 +236,7 @@ public class Student extends TableImpl<StudentRecord> {
      * Get the implicit many-to-many join path to the
      * <code>public.time_slot</code> table
      */
-    public TimeSlot.TimeSlotPath timeSlot() {
+    public TimeSlotPath timeSlot() {
         return studentHistory().timeSlot();
     }
 

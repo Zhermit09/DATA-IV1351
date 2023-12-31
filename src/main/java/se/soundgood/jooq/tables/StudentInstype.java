@@ -32,8 +32,9 @@ import org.jooq.impl.TableImpl;
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
 import se.soundgood.jooq.enums.Instype;
-import se.soundgood.jooq.tables.records.StudentInstypeRecord;
 import se.soundgood.jooq.enums.Skill;
+import se.soundgood.jooq.tables.Student.StudentPath;
+import se.soundgood.jooq.tables.records.StudentInstypeRecord;
 
 
 /**
@@ -147,14 +148,14 @@ public class StudentInstype extends TableImpl<StudentInstypeRecord> {
         return Arrays.asList(Keys.STUDENT_INSTYPE__STUDENT_INSTYPE_STUDENT_ID_FKEY);
     }
 
-    private transient Student.StudentPath _student;
+    private transient StudentPath _student;
 
     /**
      * Get the implicit join path to the <code>public.student</code> table.
      */
-    public Student.StudentPath student() {
+    public StudentPath student() {
         if (_student == null)
-            _student = new Student.StudentPath(this, Keys.STUDENT_INSTYPE__STUDENT_INSTYPE_STUDENT_ID_FKEY, null);
+            _student = new StudentPath(this, Keys.STUDENT_INSTYPE__STUDENT_INSTYPE_STUDENT_ID_FKEY, null);
 
         return _student;
     }

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
 
-import se.soundgood.jooq.tables.pojos.RentPrice;
+import se.soundgood.jooq.tables.RentPrice;
 
 
 /**
@@ -112,14 +112,14 @@ public class RentPriceRecord extends UpdatableRecordImpl<RentPriceRecord> {
      * Create a detached RentPriceRecord
      */
     public RentPriceRecord() {
-        super(se.soundgood.jooq.tables.RentPrice.RENT_PRICE);
+        super(RentPrice.RENT_PRICE);
     }
 
     /**
      * Create a detached, initialised RentPriceRecord
      */
     public RentPriceRecord(Long rentPriceId, Integer price, LocalDate fromDate, LocalDate toDate, Long instrumentId) {
-        super(se.soundgood.jooq.tables.RentPrice.RENT_PRICE);
+        super(RentPrice.RENT_PRICE);
 
         setRentPriceId(rentPriceId);
         setPrice(price);
@@ -132,8 +132,8 @@ public class RentPriceRecord extends UpdatableRecordImpl<RentPriceRecord> {
     /**
      * Create a detached, initialised RentPriceRecord
      */
-    public RentPriceRecord(RentPrice value) {
-        super(se.soundgood.jooq.tables.RentPrice.RENT_PRICE);
+    public RentPriceRecord(se.soundgood.jooq.tables.pojos.RentPrice value) {
+        super(RentPrice.RENT_PRICE);
 
         if (value != null) {
             setRentPriceId(value.rentPriceId());

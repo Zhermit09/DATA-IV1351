@@ -7,7 +7,7 @@ package se.soundgood.jooq.tables.records;
 import org.jooq.Record2;
 import org.jooq.impl.UpdatableRecordImpl;
 
-import se.soundgood.jooq.tables.pojos.StudentHistory;
+import se.soundgood.jooq.tables.StudentHistory;
 
 
 /**
@@ -65,14 +65,14 @@ public class StudentHistoryRecord extends UpdatableRecordImpl<StudentHistoryReco
      * Create a detached StudentHistoryRecord
      */
     public StudentHistoryRecord() {
-        super(se.soundgood.jooq.tables.StudentHistory.STUDENT_HISTORY);
+        super(StudentHistory.STUDENT_HISTORY);
     }
 
     /**
      * Create a detached, initialised StudentHistoryRecord
      */
     public StudentHistoryRecord(Long studentId, Long timeSlotId) {
-        super(se.soundgood.jooq.tables.StudentHistory.STUDENT_HISTORY);
+        super(StudentHistory.STUDENT_HISTORY);
 
         setStudentId(studentId);
         setTimeSlotId(timeSlotId);
@@ -82,8 +82,8 @@ public class StudentHistoryRecord extends UpdatableRecordImpl<StudentHistoryReco
     /**
      * Create a detached, initialised StudentHistoryRecord
      */
-    public StudentHistoryRecord(StudentHistory value) {
-        super(se.soundgood.jooq.tables.StudentHistory.STUDENT_HISTORY);
+    public StudentHistoryRecord(se.soundgood.jooq.tables.pojos.StudentHistory value) {
+        super(StudentHistory.STUDENT_HISTORY);
 
         if (value != null) {
             setStudentId(value.studentId());

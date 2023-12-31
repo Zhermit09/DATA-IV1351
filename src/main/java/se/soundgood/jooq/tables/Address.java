@@ -30,6 +30,8 @@ import org.jooq.impl.TableImpl;
 
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
+import se.soundgood.jooq.tables.Person.PersonPath;
+import se.soundgood.jooq.tables.PersonAddress.PersonAddressPath;
 import se.soundgood.jooq.tables.records.AddressRecord;
 
 
@@ -149,15 +151,15 @@ public class Address extends TableImpl<AddressRecord> {
         return Keys.ADDRESS_PKEY;
     }
 
-    private transient PersonAddress.PersonAddressPath _personAddress;
+    private transient PersonAddressPath _personAddress;
 
     /**
      * Get the implicit to-many join path to the
      * <code>public.person_address</code> table
      */
-    public PersonAddress.PersonAddressPath personAddress() {
+    public PersonAddressPath personAddress() {
         if (_personAddress == null)
-            _personAddress = new PersonAddress.PersonAddressPath(this, null, Keys.PERSON_ADDRESS__PERSON_ADDRESS_ADDRESS_ID_FKEY.getInverseKey());
+            _personAddress = new PersonAddressPath(this, null, Keys.PERSON_ADDRESS__PERSON_ADDRESS_ADDRESS_ID_FKEY.getInverseKey());
 
         return _personAddress;
     }
@@ -166,7 +168,7 @@ public class Address extends TableImpl<AddressRecord> {
      * Get the implicit many-to-many join path to the <code>public.person</code>
      * table
      */
-    public Person.PersonPath person() {
+    public PersonPath person() {
         return personAddress().person();
     }
 

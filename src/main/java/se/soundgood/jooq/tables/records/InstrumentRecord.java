@@ -7,7 +7,7 @@ package se.soundgood.jooq.tables.records;
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
 
-import se.soundgood.jooq.tables.pojos.Instrument;
+import se.soundgood.jooq.tables.Instrument;
 
 
 /**
@@ -80,14 +80,14 @@ public class InstrumentRecord extends UpdatableRecordImpl<InstrumentRecord> {
      * Create a detached InstrumentRecord
      */
     public InstrumentRecord() {
-        super(se.soundgood.jooq.tables.Instrument.INSTRUMENT);
+        super(Instrument.INSTRUMENT);
     }
 
     /**
      * Create a detached, initialised InstrumentRecord
      */
     public InstrumentRecord(Long instrumentId, String description, Long instrumentSpecificationId) {
-        super(se.soundgood.jooq.tables.Instrument.INSTRUMENT);
+        super(Instrument.INSTRUMENT);
 
         setInstrumentId(instrumentId);
         setDescription(description);
@@ -98,8 +98,8 @@ public class InstrumentRecord extends UpdatableRecordImpl<InstrumentRecord> {
     /**
      * Create a detached, initialised InstrumentRecord
      */
-    public InstrumentRecord(Instrument value) {
-        super(se.soundgood.jooq.tables.Instrument.INSTRUMENT);
+    public InstrumentRecord(se.soundgood.jooq.tables.pojos.Instrument value) {
+        super(Instrument.INSTRUMENT);
 
         if (value != null) {
             setInstrumentId(value.instrumentId());

@@ -7,7 +7,7 @@ package se.soundgood.jooq.tables.records;
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
 
-import se.soundgood.jooq.tables.pojos.Address;
+import se.soundgood.jooq.tables.Address;
 
 
 /**
@@ -95,14 +95,14 @@ public class AddressRecord extends UpdatableRecordImpl<AddressRecord> {
      * Create a detached AddressRecord
      */
     public AddressRecord() {
-        super(se.soundgood.jooq.tables.Address.ADDRESS);
+        super(Address.ADDRESS);
     }
 
     /**
      * Create a detached, initialised AddressRecord
      */
     public AddressRecord(Long addressId, String city, String zip, String street) {
-        super(se.soundgood.jooq.tables.Address.ADDRESS);
+        super(Address.ADDRESS);
 
         setAddressId(addressId);
         setCity(city);
@@ -114,8 +114,8 @@ public class AddressRecord extends UpdatableRecordImpl<AddressRecord> {
     /**
      * Create a detached, initialised AddressRecord
      */
-    public AddressRecord(Address value) {
-        super(se.soundgood.jooq.tables.Address.ADDRESS);
+    public AddressRecord(se.soundgood.jooq.tables.pojos.Address value) {
+        super(Address.ADDRESS);
 
         if (value != null) {
             setAddressId(value.addressId());

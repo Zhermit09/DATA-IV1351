@@ -28,13 +28,6 @@ public class SoundgoodDAO {
         }
     }
 
-    public void transaction(TransactionalRunnable runnable) throws DataAccessException {
-        jooq.transaction(runnable);
-    }
-
-    public <T> T transactionResult(TransactionalCallable<T> runnable) throws DataAccessException {
-        return jooq.transactionResult(runnable);
-    }
 
     private DSLContext connectToSoundgoodDB() throws ClassNotFoundException, SQLException {
         String userName = "postgres";
@@ -46,6 +39,17 @@ public class SoundgoodDAO {
 
         return DSL.using(connection, SQLDialect.POSTGRES);
     }
+
+
+
+    public void transaction(TransactionalRunnable runnable) throws DataAccessException {
+        jooq.transaction(runnable);
+    }
+
+    public <T> T transactionResult(TransactionalCallable<T> runnable) throws DataAccessException {
+        return jooq.transactionResult(runnable);
+    }
+
 
 
     public List<AvailableInstrumentRecord> listAvailableInstruments(Configuration tx, Instype type) {

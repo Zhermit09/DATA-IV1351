@@ -31,6 +31,8 @@ import org.jooq.impl.TableImpl;
 
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
+import se.soundgood.jooq.tables.Lesson.LessonPath;
+import se.soundgood.jooq.tables.Student.StudentPath;
 import se.soundgood.jooq.tables.records.EnrollmentRecord;
 
 
@@ -140,26 +142,26 @@ public class Enrollment extends TableImpl<EnrollmentRecord> {
         return Arrays.asList(Keys.ENROLLMENT__ENROLLMENT_LESSON_ID_FKEY, Keys.ENROLLMENT__ENROLLMENT_STUDENT_ID_FKEY);
     }
 
-    private transient Lesson.LessonPath _lesson;
+    private transient LessonPath _lesson;
 
     /**
      * Get the implicit join path to the <code>public.lesson</code> table.
      */
-    public Lesson.LessonPath lesson() {
+    public LessonPath lesson() {
         if (_lesson == null)
-            _lesson = new Lesson.LessonPath(this, Keys.ENROLLMENT__ENROLLMENT_LESSON_ID_FKEY, null);
+            _lesson = new LessonPath(this, Keys.ENROLLMENT__ENROLLMENT_LESSON_ID_FKEY, null);
 
         return _lesson;
     }
 
-    private transient Student.StudentPath _student;
+    private transient StudentPath _student;
 
     /**
      * Get the implicit join path to the <code>public.student</code> table.
      */
-    public Student.StudentPath student() {
+    public StudentPath student() {
         if (_student == null)
-            _student = new Student.StudentPath(this, Keys.ENROLLMENT__ENROLLMENT_STUDENT_ID_FKEY, null);
+            _student = new StudentPath(this, Keys.ENROLLMENT__ENROLLMENT_STUDENT_ID_FKEY, null);
 
         return _student;
     }

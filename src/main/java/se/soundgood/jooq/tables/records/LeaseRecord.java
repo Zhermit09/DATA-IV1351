@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
 
-import se.soundgood.jooq.tables.pojos.Lease;
+import se.soundgood.jooq.tables.Lease;
 
 
 /**
@@ -127,14 +127,14 @@ public class LeaseRecord extends UpdatableRecordImpl<LeaseRecord> {
      * Create a detached LeaseRecord
      */
     public LeaseRecord() {
-        super(se.soundgood.jooq.tables.Lease.LEASE);
+        super(Lease.LEASE);
     }
 
     /**
      * Create a detached, initialised LeaseRecord
      */
     public LeaseRecord(Long leaseId, LocalDate rentDate, LocalDate returnDate, Long instrumentId, Long studentId, Long rentPriceId) {
-        super(se.soundgood.jooq.tables.Lease.LEASE);
+        super(Lease.LEASE);
 
         setLeaseId(leaseId);
         setRentDate(rentDate);
@@ -148,8 +148,8 @@ public class LeaseRecord extends UpdatableRecordImpl<LeaseRecord> {
     /**
      * Create a detached, initialised LeaseRecord
      */
-    public LeaseRecord(Lease value) {
-        super(se.soundgood.jooq.tables.Lease.LEASE);
+    public LeaseRecord(se.soundgood.jooq.tables.pojos.Lease value) {
+        super(Lease.LEASE);
 
         if (value != null) {
             setLeaseId(value.leaseId());

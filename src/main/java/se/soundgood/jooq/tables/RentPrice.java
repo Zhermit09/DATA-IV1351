@@ -33,9 +33,9 @@ import org.jooq.impl.TableImpl;
 
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
-import se.soundgood.jooq.tables.records.RentPriceRecord;
 import se.soundgood.jooq.tables.Instrument.InstrumentPath;
 import se.soundgood.jooq.tables.Lease.LeasePath;
+import se.soundgood.jooq.tables.records.RentPriceRecord;
 
 
 /**

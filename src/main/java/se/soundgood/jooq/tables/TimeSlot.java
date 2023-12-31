@@ -34,12 +34,12 @@ import org.jooq.types.YearToSecond;
 
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
-import se.soundgood.jooq.tables.records.TimeSlotRecord;
 import se.soundgood.jooq.tables.Instructor.InstructorPath;
 import se.soundgood.jooq.tables.Lesson.LessonPath;
 import se.soundgood.jooq.tables.Payment.PaymentPath;
 import se.soundgood.jooq.tables.Student.StudentPath;
 import se.soundgood.jooq.tables.StudentHistory.StudentHistoryPath;
+import se.soundgood.jooq.tables.records.TimeSlotRecord;
 
 
 /**

@@ -7,7 +7,7 @@ package se.soundgood.jooq.tables.records;
 import org.jooq.impl.TableRecordImpl;
 
 import se.soundgood.jooq.enums.Instype;
-import se.soundgood.jooq.tables.pojos.AvailableInstrument;
+import se.soundgood.jooq.tables.AvailableInstrument;
 
 
 /**
@@ -101,14 +101,14 @@ public class AvailableInstrumentRecord extends TableRecordImpl<AvailableInstrume
      * Create a detached AvailableInstrumentRecord
      */
     public AvailableInstrumentRecord() {
-        super(se.soundgood.jooq.tables.AvailableInstrument.AVAILABLE_INSTRUMENT);
+        super(AvailableInstrument.AVAILABLE_INSTRUMENT);
     }
 
     /**
      * Create a detached, initialised AvailableInstrumentRecord
      */
     public AvailableInstrumentRecord(Long instrumentId, Instype type, String brand, String description, Integer price) {
-        super(se.soundgood.jooq.tables.AvailableInstrument.AVAILABLE_INSTRUMENT);
+        super(AvailableInstrument.AVAILABLE_INSTRUMENT);
 
         setInstrumentId(instrumentId);
         setType(type);
@@ -121,8 +121,8 @@ public class AvailableInstrumentRecord extends TableRecordImpl<AvailableInstrume
     /**
      * Create a detached, initialised AvailableInstrumentRecord
      */
-    public AvailableInstrumentRecord(AvailableInstrument value) {
-        super(se.soundgood.jooq.tables.AvailableInstrument.AVAILABLE_INSTRUMENT);
+    public AvailableInstrumentRecord(se.soundgood.jooq.tables.pojos.AvailableInstrument value) {
+        super(AvailableInstrument.AVAILABLE_INSTRUMENT);
 
         if (value != null) {
             setInstrumentId(value.instrumentId());

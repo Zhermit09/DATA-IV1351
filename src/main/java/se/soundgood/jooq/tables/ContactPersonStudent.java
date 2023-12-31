@@ -31,6 +31,8 @@ import org.jooq.impl.TableImpl;
 
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
+import se.soundgood.jooq.tables.Person.PersonPath;
+import se.soundgood.jooq.tables.Student.StudentPath;
 import se.soundgood.jooq.tables.records.ContactPersonStudentRecord;
 
 
@@ -140,26 +142,26 @@ public class ContactPersonStudent extends TableImpl<ContactPersonStudentRecord> 
         return Arrays.asList(Keys.CONTACT_PERSON_STUDENT__CONTACT_PERSON_STUDENT_STUDENT_ID_FKEY, Keys.CONTACT_PERSON_STUDENT__CONTACT_PERSON_STUDENT_CONTACT_PERSON_ID_FKEY);
     }
 
-    private transient Student.StudentPath _student;
+    private transient StudentPath _student;
 
     /**
      * Get the implicit join path to the <code>public.student</code> table.
      */
-    public Student.StudentPath student() {
+    public StudentPath student() {
         if (_student == null)
-            _student = new Student.StudentPath(this, Keys.CONTACT_PERSON_STUDENT__CONTACT_PERSON_STUDENT_STUDENT_ID_FKEY, null);
+            _student = new StudentPath(this, Keys.CONTACT_PERSON_STUDENT__CONTACT_PERSON_STUDENT_STUDENT_ID_FKEY, null);
 
         return _student;
     }
 
-    private transient Person.PersonPath _person;
+    private transient PersonPath _person;
 
     /**
      * Get the implicit join path to the <code>public.person</code> table.
      */
-    public Person.PersonPath person() {
+    public PersonPath person() {
         if (_person == null)
-            _person = new Person.PersonPath(this, Keys.CONTACT_PERSON_STUDENT__CONTACT_PERSON_STUDENT_CONTACT_PERSON_ID_FKEY, null);
+            _person = new PersonPath(this, Keys.CONTACT_PERSON_STUDENT__CONTACT_PERSON_STUDENT_CONTACT_PERSON_ID_FKEY, null);
 
         return _person;
     }

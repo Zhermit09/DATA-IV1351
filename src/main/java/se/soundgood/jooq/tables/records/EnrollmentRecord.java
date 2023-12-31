@@ -7,7 +7,7 @@ package se.soundgood.jooq.tables.records;
 import org.jooq.Record2;
 import org.jooq.impl.UpdatableRecordImpl;
 
-import se.soundgood.jooq.tables.pojos.Enrollment;
+import se.soundgood.jooq.tables.Enrollment;
 
 
 /**
@@ -65,14 +65,14 @@ public class EnrollmentRecord extends UpdatableRecordImpl<EnrollmentRecord> {
      * Create a detached EnrollmentRecord
      */
     public EnrollmentRecord() {
-        super(se.soundgood.jooq.tables.Enrollment.ENROLLMENT);
+        super(Enrollment.ENROLLMENT);
     }
 
     /**
      * Create a detached, initialised EnrollmentRecord
      */
     public EnrollmentRecord(Long lessonId, Long studentId) {
-        super(se.soundgood.jooq.tables.Enrollment.ENROLLMENT);
+        super(Enrollment.ENROLLMENT);
 
         setLessonId(lessonId);
         setStudentId(studentId);
@@ -82,8 +82,8 @@ public class EnrollmentRecord extends UpdatableRecordImpl<EnrollmentRecord> {
     /**
      * Create a detached, initialised EnrollmentRecord
      */
-    public EnrollmentRecord(Enrollment value) {
-        super(se.soundgood.jooq.tables.Enrollment.ENROLLMENT);
+    public EnrollmentRecord(se.soundgood.jooq.tables.pojos.Enrollment value) {
+        super(Enrollment.ENROLLMENT);
 
         if (value != null) {
             setLessonId(value.lessonId());

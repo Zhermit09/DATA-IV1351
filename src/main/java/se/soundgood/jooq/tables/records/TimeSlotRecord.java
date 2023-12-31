@@ -10,7 +10,7 @@ import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
 import org.jooq.types.YearToSecond;
 
-import se.soundgood.jooq.tables.pojos.TimeSlot;
+import se.soundgood.jooq.tables.TimeSlot;
 
 
 /**
@@ -143,14 +143,14 @@ public class TimeSlotRecord extends UpdatableRecordImpl<TimeSlotRecord> {
      * Create a detached TimeSlotRecord
      */
     public TimeSlotRecord() {
-        super(se.soundgood.jooq.tables.TimeSlot.TIME_SLOT);
+        super(TimeSlot.TIME_SLOT);
     }
 
     /**
      * Create a detached, initialised TimeSlotRecord
      */
     public TimeSlotRecord(Long timeSlotId, LocalDateTime date, YearToSecond duration, String location, Long lessonId, Long instructorId, Long paymentId) {
-        super(se.soundgood.jooq.tables.TimeSlot.TIME_SLOT);
+        super(TimeSlot.TIME_SLOT);
 
         setTimeSlotId(timeSlotId);
         setDate(date);
@@ -165,8 +165,8 @@ public class TimeSlotRecord extends UpdatableRecordImpl<TimeSlotRecord> {
     /**
      * Create a detached, initialised TimeSlotRecord
      */
-    public TimeSlotRecord(TimeSlot value) {
-        super(se.soundgood.jooq.tables.TimeSlot.TIME_SLOT);
+    public TimeSlotRecord(se.soundgood.jooq.tables.pojos.TimeSlot value) {
+        super(TimeSlot.TIME_SLOT);
 
         if (value != null) {
             setTimeSlotId(value.timeSlotId());

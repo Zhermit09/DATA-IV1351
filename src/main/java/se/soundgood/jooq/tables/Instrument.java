@@ -32,6 +32,9 @@ import org.jooq.impl.TableImpl;
 
 import se.soundgood.jooq.DefaultSchema;
 import se.soundgood.jooq.Keys;
+import se.soundgood.jooq.tables.InstrumentSpecification.InstrumentSpecificationPath;
+import se.soundgood.jooq.tables.Lease.LeasePath;
+import se.soundgood.jooq.tables.RentPrice.RentPricePath;
 import se.soundgood.jooq.tables.records.InstrumentRecord;
 
 
@@ -151,40 +154,40 @@ public class Instrument extends TableImpl<InstrumentRecord> {
         return Arrays.asList(Keys.INSTRUMENT__INSTRUMENT_INSTRUMENT_SPECIFICATION_ID_FKEY);
     }
 
-    private transient InstrumentSpecification.InstrumentSpecificationPath _instrumentSpecification;
+    private transient InstrumentSpecificationPath _instrumentSpecification;
 
     /**
      * Get the implicit join path to the
      * <code>public.instrument_specification</code> table.
      */
-    public InstrumentSpecification.InstrumentSpecificationPath instrumentSpecification() {
+    public InstrumentSpecificationPath instrumentSpecification() {
         if (_instrumentSpecification == null)
-            _instrumentSpecification = new InstrumentSpecification.InstrumentSpecificationPath(this, Keys.INSTRUMENT__INSTRUMENT_INSTRUMENT_SPECIFICATION_ID_FKEY, null);
+            _instrumentSpecification = new InstrumentSpecificationPath(this, Keys.INSTRUMENT__INSTRUMENT_INSTRUMENT_SPECIFICATION_ID_FKEY, null);
 
         return _instrumentSpecification;
     }
 
-    private transient Lease.LeasePath _lease;
+    private transient LeasePath _lease;
 
     /**
      * Get the implicit to-many join path to the <code>public.lease</code> table
      */
-    public Lease.LeasePath lease() {
+    public LeasePath lease() {
         if (_lease == null)
-            _lease = new Lease.LeasePath(this, null, Keys.LEASE__LEASE_INSTRUMENT_ID_FKEY.getInverseKey());
+            _lease = new LeasePath(this, null, Keys.LEASE__LEASE_INSTRUMENT_ID_FKEY.getInverseKey());
 
         return _lease;
     }
 
-    private transient RentPrice.RentPricePath _rentPrice;
+    private transient RentPricePath _rentPrice;
 
     /**
      * Get the implicit to-many join path to the <code>public.rent_price</code>
      * table
      */
-    public RentPrice.RentPricePath rentPrice() {
+    public RentPricePath rentPrice() {
         if (_rentPrice == null)
-            _rentPrice = new RentPrice.RentPricePath(this, null, Keys.RENT_PRICE__RENT_PRICE_INSTRUMENT_ID_FKEY.getInverseKey());
+            _rentPrice = new RentPricePath(this, null, Keys.RENT_PRICE__RENT_PRICE_INSTRUMENT_ID_FKEY.getInverseKey());
 
         return _rentPrice;
     }
