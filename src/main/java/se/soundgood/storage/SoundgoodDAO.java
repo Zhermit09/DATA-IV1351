@@ -26,6 +26,7 @@ public class SoundgoodDAO {
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException("[ERROR] Could Not Connect To Database", e);
         }
+        jooq.select().fetch(); //empty database query to wake up JOOQ and print out the logo
     }
 
 

@@ -5,8 +5,6 @@ import se.soundgood.jooq.enums.Instype;
 import se.soundgood.main.Run;
 import se.soundgood.service.Service;
 
-import java.util.Scanner;
-
 import static se.soundgood.controller.Command.UNK_CMD;
 
 public class Controller {
@@ -17,18 +15,16 @@ public class Controller {
     private String reason;
 
     private final Service service;
-    private final Scanner scanner;
+
 
     public Controller() {
         service = new Service();
-        scanner = new Scanner(System.in);
     }
 
-    public String interact(Run run) {
-        reset();
+    public String interact(String src, Run run) {
         String result = "";
-        String src = scanner.nextLine().replaceAll("\\s+", " ").trim().toUpperCase();
 
+        reset();
         if (src.isEmpty()) {
             return result;
         }
