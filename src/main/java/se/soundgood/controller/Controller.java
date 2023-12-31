@@ -30,7 +30,7 @@ public class Controller {
             }
 
             Integer max = dao.getMaxLeaseCount(tx);
-            if (dao.getStudentActiveLeases(tx, sId) >= max) {
+            if (dao.countStudentActiveLeases(tx, sId) >= max) {
                 throw new SQLTransactionRollbackException(String.format("The Student Has Already Reached The Maximum Number Of Leases (%d)", max));
             }
 

@@ -66,7 +66,7 @@ public class SoundgoodDAO {
                         .and(currentLocalDate().le(LEASE.RETURN_DATE))));
     }
 
-    public Integer getStudentActiveLeases(Configuration tx, Long sId) {
+    public Integer countStudentActiveLeases(Configuration tx, Long sId) {
         return tx.dsl().fetchCount(tx.dsl().selectFrom(LEASE)
                 .where(LEASE.STUDENT_ID.eq(sId)
                         .and(currentLocalDate().le(LEASE.RETURN_DATE))));
